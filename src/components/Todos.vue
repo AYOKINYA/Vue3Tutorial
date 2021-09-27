@@ -1,5 +1,4 @@
 <template>
-<div class="container">
     <h3>{{name}}'s Todo List</h3>
     <div>
         Filter Todos:
@@ -11,7 +10,6 @@
     </div>
     <add-todo/>
 <div class="todos">
-    
     <button @click="cleanTodos(visible)">Remove {{visible}} Todos</button>
     <div class="legend">
       <span>Double click to mark as complete</span>
@@ -31,20 +29,14 @@
         <button @click="removeTodo(todo.id)">DELETE</button>
     </div>
 </div>
-</div>
     
 </template>
 
 <script>
-import { ref, computed } from 'vue'
-import { useStore } from 'vuex'
-import AddTodo from './AddTodo.vue'
 
-const filters = {
-  all: todos => todos,
-  incompleted: todos => todos.filter(todo => !todo.completed),
-  completed: todos => todos.filter(todo => todo.completed)
-}
+import AddTodo from './AddTodo.vue'
+import filterTodos from '../composables/filterTodos'
+import CRUDTodos from '../composables/CRUDTodos'
 
 export default {
     name: 'Todos',
@@ -57,35 +49,20 @@ export default {
     
     setup() {
 
-        const visible = ref('all')
+        const {todos, getTodos, updateTodo, removeTodo} = CRUDTodos();
 
-        const store = useStore();
-
-        const getTodos = store.dispatch('todos/getTodos');
-        const todos = computed(() => store.state.todos.todos); 
-        const updateTodo = (todo) => {
-            const upTodo = {
-                id: todo.id,
-                title: todo.title,
-                completed: !todo.completed
-            };
-            store.dispatch('todos/updateTodo', upTodo);
-        }
-        const removeTodo = (id) => store.dispatch('todos/removeTodo', id);
-        const cleanTodos = (visible) => store.dispatch('todos/cleanTodos', visible);
-
-        const filteredTodos = computed(() => filters[visible.value](todos.value))
-        const setVisibility = (e) => (visible.value = e.target.options[e.target.options.selectedIndex].value)
+        const {visible, cleanTodos, filteredTodos, setVisibility} = filterTodos(todos);
 
         return {
             todos,
             getTodos,
             updateTodo,
             removeTodo,
-            cleanTodos,
+
             visible,
+            cleanTodos,
             filteredTodos,
-            setVisibility,
+            setVisibility
         }
     }
 }
@@ -138,5 +115,11 @@ i {
   .todos {
     grid-template-columns: 1fr;
   }
+}
+
+select {
+  margin-top: 20px;
+  padding: 6px;
+  border: #41b883 1px solid;
 }
 </style>

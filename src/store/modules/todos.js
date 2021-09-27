@@ -6,8 +6,7 @@ const state = {
 }
 
 const getters = {
-    completed: state => state.todos.filter(todo => todo.completed),
-    incompledted: state => state.todos.filter(todo => !todo.completed)
+
 }
 
 const actions = {
@@ -69,7 +68,6 @@ const mutations = {
         }
     },
 }
-
 
 export default {
     namespaced: true,
