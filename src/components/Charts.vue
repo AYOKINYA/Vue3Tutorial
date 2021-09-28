@@ -1,6 +1,6 @@
 <template>
-    <doughnut/>
-    <bar/>
+    <Doughnut/>
+    <Bar/>
     <Line/>
 </template>
 

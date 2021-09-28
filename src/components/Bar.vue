@@ -44,7 +44,7 @@ export default {
             },
         }))
 
-        const {barChartProps, barChartRef} = useBarChart({
+        const { barChartProps, barChartRef } = useBarChart({
             chartData,
             options
         });
