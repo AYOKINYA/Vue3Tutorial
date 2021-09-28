@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Todos from './Todos.vue'
+import Todos from './todo/Todos';
 
 export default {
     name: 'Home',

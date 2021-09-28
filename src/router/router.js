@@ -9,12 +9,12 @@ const routes = [
     {
         path: '/count',
         name: 'Count',
-        component: () => import('@/components/Count')
+        component: () => import('@/components/counter/Count')
     },
     {
         path: '/charts',
         name: 'Charts',
-        component: () => import('@/components/Charts')
+        component: () => import('@/components/charts/Charts')
     },
 ]
 

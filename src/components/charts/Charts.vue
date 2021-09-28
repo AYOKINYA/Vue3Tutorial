@@ -6,10 +6,10 @@
 </template>
 
 <script>
-import Doughnut from './Doughnut.vue'
-import Bar from './Bar.vue'
-import Line from './Line.vue'
-import MixedChart from './MixedChart.vue'
+import Doughnut from './Doughnut'
+import Bar from './Bar'
+import Line from './Line'
+import MixedChart from './MixedChart'
 
 export default {
     name: "Charts",

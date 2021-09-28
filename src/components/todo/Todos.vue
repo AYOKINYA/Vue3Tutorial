@@ -34,9 +34,9 @@
 
 <script>
 
-import AddTodo from './AddTodo.vue'
-import filterTodos from '../composables/filterTodos'
-import CRUDTodos from '../composables/CRUDTodos'
+import AddTodo from './AddTodo'
+import filterTodos from '../../composables/filterTodos'
+import CRUDTodos from '../../composables/CRUDTodos'
 
 export default {
     name: 'Todos',

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import calcCount from '../composables/calcCount'
+import calcCount from '../../composables/calcCount'
 
 export default {
     name: 'Count',
