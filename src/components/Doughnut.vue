@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DoughnutChart v-bind="doughnutChartProps" />
+    <doughnut-chart v-bind="doughnutChartProps" />
   </div>
 </template>
 
