@@ -1,24 +1,26 @@
 <template>
     <div>
-        <line-chart v-bind="lineChartProps"/>
-    </div>    
+        <bar-chart v-bind="barChartProps" />
+    </div>
 </template>
 
 <script>
 import { computed, ref } from 'vue';
-import { LineChart, useLineChart } from 'vue-chart-3';
+//You can choose any chart to draw a mixed chart.
+import { BarChart, useBarChart } from 'vue-chart-3';
 
 import { Chart, registerables } from "chart.js";
 Chart.register(...registerables)
 
 export default {
-    name: 'Line',
+    name: 'MixedChart',
     components: {
-        LineChart,
+        BarChart
     },
+
     setup() {
         const data1 = ref([40, 60, 30, 70, 15]);
-        const data2 = ref([80, 50, 20, 40, 60]);
+        const data2 = ref([180, 150, 120, 140, 160]);
 
         const chartData = computed(() => ({
             labels: ["Seoul", "London", "Taipei", "Cairo", "Havana"],
@@ -26,44 +28,40 @@ export default {
                 {
                     label: "The 1st poll",
                     data: data1.value,
-                    fill: false,
-                    borderColor: 'rgba(255, 51, 106, 0.5)',
-                    tension: 0.1
+                    backgroundColor: ['#77CEFF', '#0079AF', '#123E6B', '#97B0C4', '#A5C8ED'],
                 },
                 {
+                    type: 'line',
                     label: "The 2nd poll",
                     data: data2.value,
                     fill: false,
-                    borderColor: 'rgba(51, 156, 255, 0.5)',
+                    borderColor: 'rgba(199, 51, 255, 0.5)',
                     tension: 0.1
                 },
             ],
         }));
 
         const options = computed(() => ({
-            scales: {
-                y: {
-                    title: {
-                        display: true,
-                        text: "Popularity"
-                    }
+            plugins: {
+                legend: {
+                    display: false
                 },
-                x: {
-                    title: {
-                        display: true,
-                        text: "Countries"
-                    }
-                }
-            }
+                title: {
+                    display: true,
+                    text: "Chart.js Mixed Chart",
+                },
+            },
         }))
 
-        const { lineChartProps, lineChartRef } = useLineChart({
+        const { barChartProps, barChartRef } = useBarChart({
             chartData,
             options
         });
 
-        return { lineChartProps, lineChartRef };
+        return { barChartProps, barChartRef };
+
     }
+    
 }
 </script>
 
