@@ -10,7 +10,12 @@ const routes = [
         path: '/count',
         name: 'Count',
         component: () => import('@/components/Count')
-    }
+    },
+    {
+        path: '/charts',
+        name: 'Charts',
+        component: () => import('@/components/Charts')
+    },
 ]
 
 export const router = createRouter({
