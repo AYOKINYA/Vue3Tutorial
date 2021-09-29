@@ -3,6 +3,7 @@
     <Bar/>
     <Line/>
     <MixedChart/>
+    <DoughnutGauge/>
 </template>
 
 <script>
@@ -10,6 +11,7 @@ import Doughnut from './Doughnut'
 import Bar from './Bar'
 import Line from './Line'
 import MixedChart from './MixedChart'
+import DoughnutGauge from './DoughnutGauge'
 
 export default {
     name: "Charts",
@@ -17,7 +19,8 @@ export default {
         Doughnut,
         Bar,
         Line,
-        MixedChart
+        MixedChart,
+        DoughnutGauge
     }
 }
 </script>
