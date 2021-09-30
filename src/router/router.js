@@ -16,6 +16,11 @@ const routes = [
         name: 'Charts',
         component: () => import('@/components/charts/Charts')
     },
+    {
+        path: '/realtime_charts',
+        name: 'RealTimeSeries',
+        component: () => import('@/components/charts/RealTimeSeries')
+    },
 ]
 
 export const router = createRouter({
