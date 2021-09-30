@@ -4,7 +4,7 @@
     <Line/>
     <MixedChart/>
     <DoughnutGauge/>
-    <Text/>
+    <DoughnutTexts/>
 </template>
 
 <script>
@@ -13,7 +13,7 @@ import Bar from './Bar'
 import Line from './Line'
 import MixedChart from './MixedChart'
 import DoughnutGauge from './DoughnutGauge'
-import Text from './Text'
+import DoughnutTexts from './DoughnutTexts'
 
 export default {
     name: "Charts",
@@ -23,7 +23,7 @@ export default {
         Line,
         MixedChart,
         DoughnutGauge,
-        Text
+        DoughnutTexts
     }
 }
 </script>

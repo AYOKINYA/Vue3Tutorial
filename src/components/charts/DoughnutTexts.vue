@@ -14,7 +14,7 @@ Chart.register(...registerables)
 import drawDoughnutLabel from "./DoughnutLabel/core"
 
 export default {
-  name: 'Text',
+  name: 'DoughnutTexts',
   components: { DoughnutChart },
   setup() {
     const dataValues = ref([35, 65]);
@@ -22,9 +22,16 @@ export default {
 
     const doughnutLabel = {
         id: 'doughnutLabel',
-        beforeDraw(chart) {
-          drawDoughnutLabel(chart)
-          }
+        defaults: {
+            font: {
+            family: undefined,
+            lineHeight: 1.2,
+            size: 16,
+            style: 'normal',
+            weight: null
+            },
+        },
+        beforeDraw: (chart, options) => drawDoughnutLabel(chart, options)
     };
 
     const options = computed(() => ({
@@ -42,6 +49,7 @@ export default {
           display: true,
           text: "Chart.js Doughnut Gauge Chart",
         },
+
       },
     }));
 
