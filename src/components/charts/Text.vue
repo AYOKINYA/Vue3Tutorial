@@ -11,8 +11,10 @@ import { DoughnutChart, useDoughnutChart } from 'vue-chart-3';
 import { Chart, registerables } from "chart.js";
 Chart.register(...registerables)
 
+import drawDoughnutLabel from "./DoughnutLabel/core"
+
 export default {
-  name: 'DoughnutGauge',
+  name: 'Text',
   components: { DoughnutChart },
   setup() {
     const dataValues = ref([35, 65]);
@@ -21,28 +23,8 @@ export default {
     const doughnutLabel = {
         id: 'doughnutLabel',
         beforeDraw(chart) {
-            const {ctx, chartArea: {top, right, bottom, left}} = chart;
-            ctx.save();
-
-            const text = 35 + "%";
-            ctx.textAlign = "center";
-            ctx.textBaseline = "middle";
-            const fontSize = 60;
-            const lineHeight = 1.6;
-            ctx.font = fontSize + "px san-serif";
-
-            const centerX = (left + right) / 2;
-            const centerY = (top + bottom) / 2;
-            const topY = centerY - lineHeight / 2
-
-            ctx.fillStyle = 'rgba(111, 163, 212, 1)';
-            
-            const textX = centerX
-            const textY = topY + lineHeight / 2;
-
-            ctx.fillText(text,  textX, textY);
-        }
-
+          drawDoughnutLabel(chart)
+          }
     };
 
     const options = computed(() => ({
@@ -60,7 +42,6 @@ export default {
           display: true,
           text: "Chart.js Doughnut Gauge Chart",
         },
-
       },
     }));
 
