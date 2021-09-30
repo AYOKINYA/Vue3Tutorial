@@ -20,18 +20,31 @@ export default {
     const dataValues = ref([35, 65]);
     const toggleLegend = ref(true);
 
+    // text to write inside the doughnut chart
+    const texts = ref({
+      font: 'san-serif', 
+      color: 'red', // if color is not given, utils.defaults.font.color is set
+      labels: [
+        {
+          text: "Progress",
+            font: {
+              size: '60'
+            },
+          //The color is red without given color
+        },
+        {
+          text: "65%",
+            font: {
+              size: '60'
+            },
+          color: 'rgba(111, 163, 212, 1)'
+        },
+      ]
+    });
+
     const doughnutLabel = {
         id: 'doughnutLabel',
-        defaults: {
-            font: {
-            family: undefined,
-            lineHeight: 1.2,
-            size: 16,
-            style: 'normal',
-            weight: null
-            },
-        },
-        beforeDraw: (chart, options) => drawDoughnutLabel(chart, options)
+        beforeDraw: (chart) => drawDoughnutLabel(chart, texts.value)
     };
 
     const options = computed(() => ({
@@ -49,7 +62,6 @@ export default {
           display: true,
           text: "Chart.js Doughnut Gauge Chart",
         },
-
       },
     }));
 

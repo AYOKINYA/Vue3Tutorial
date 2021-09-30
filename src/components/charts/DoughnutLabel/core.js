@@ -1,34 +1,11 @@
 import {resolve} from 'chart.js/helpers'
 import {utils} from './utils';
 
-
-function drawDoughnutLabel(chart) {
-
-	// text to write inside the doughnut chart
-	const options = {
-		font: 'san-serif', 
-		color: 'red', // if color is not given, utils.defaults.font.color is set
-		labels: [
-			{
-				text: "Progress",
-					font: {
-						size: '60'
-					},
-				//The color is red without given color
-			},
-			{
-				text: "65%",
-					font: {
-						size: '60'
-					},
-				color: 'rgba(111, 163, 212, 1)'
-			},
-		]
-	};
+function drawDoughnutLabel(chart, values) {
 
 	if (chart.chartArea) {
 		const {ctx, chartArea: {top, right, bottom, left}} = chart;
-		const { labels } = options;
+		const { labels } = values;
 		const color = utils.defaults.font.color;
 
 		ctx.save();
@@ -38,9 +15,9 @@ function drawDoughnutLabel(chart) {
 			typeof label.text === "function" ? label.text(chart) : label.text;
 			const innerLabel = {
 				text: text,
-				font: utils.parseFont(resolve([label.font, options.font, {}], ctx, 0)),
+				font: utils.parseFont(resolve([label.font, values.font, {}], ctx, 0)),
 				color: resolve(
-					[label.color, options.color, color],
+					[label.color, values.color, color],
 					ctx,
 					0
 				),
