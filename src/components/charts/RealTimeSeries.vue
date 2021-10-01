@@ -3,6 +3,7 @@
         <line-chart v-bind="lineChartProps" id="mychart"></line-chart>
         <button @click="stopGettingData">STOP</button>
         <button @click="getRealtimeData">get Data</button>
+        <button @click="resetData">get Data</button>
     </div>
 </template>
 
@@ -66,6 +67,11 @@ export default {
             socket.off("newdata", console.log("FREEZE!"));
         }
 
+        const resetData = () => {
+            x.value = [];
+            y.value = [];
+        }
+
         onMounted(() => getRealtimeData())
 
         const getRandomChartValues = (number) => {
@@ -81,6 +87,7 @@ export default {
             dataCollection,
 			options,
             fillData,
+            resetData,
             stopGettingData,
 			getRealtimeData,
 			getRandomChartValues,

@@ -44,10 +44,46 @@ export default {
             },
         }))
 
+        // TODO : compare heights of bars in pair and draw the gaps accordingly
+        const drawGap = function(chart) {
+            const {ctx} = chart;
+
+            const x1 = chart._metasets[0].data[0].x;
+            const y1 = chart._metasets[0].data[0].y;
+            const w1 = chart._metasets[0].data[0].width;
+
+            const x2 = chart._metasets[0].data[1].x;
+            const y2 = chart._metasets[0].data[1].y;
+            const w2 = chart._metasets[0].data[1].width;
+
+            console.log(chart._metasets[0])
+
+            ctx.beginPath();
+            ctx.strokeStyle = "#ff0000";
+            ctx.lineWidth = 5
+            ctx.setLineDash([5, 3]);
+            ctx.moveTo(x2 - w2 / 2, y2 + ctx.lineWidth / 2); //From
+            ctx.lineTo(x1 - w1 / 2, y2 + ctx.lineWidth / 2); //To
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.strokeStyle = "#ff0000";
+            ctx.moveTo(x2 - w2 / 2, y1 - ctx.lineWidth / 2);
+            ctx.lineTo(x1 - w2 / 2, y1 - ctx.lineWidth / 2);
+            ctx.stroke();
+        }
+
+        const barGap = {
+            id: 'barGap',
+            afterDraw: (chart) => drawGap(chart)
+        }
+
         const { barChartProps, barChartRef } = useBarChart({
             chartData,
-            options
+            options,
+            plugins: [barGap]
         });
+
 
         return { barChartProps, barChartRef };
 
