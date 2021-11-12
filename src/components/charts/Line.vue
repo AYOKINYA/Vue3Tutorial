@@ -28,14 +28,14 @@ export default {
                     data: data1.value,
                     fill: false,
                     borderColor: 'rgba(255, 51, 106, 0.5)',
-                    tension: 0.1
+                    tension: 0.3
                 },
                 {
                     label: "The 2nd poll",
                     data: data2.value,
                     fill: false,
                     borderColor: 'rgba(51, 156, 255, 0.5)',
-                    tension: 0.1
+                    tension: 0.3
                 },
             ],
         }));

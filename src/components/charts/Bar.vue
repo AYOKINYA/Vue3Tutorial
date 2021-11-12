@@ -56,8 +56,6 @@ export default {
             const y2 = chart._metasets[0].data[1].y;
             const w2 = chart._metasets[0].data[1].width;
 
-            console.log(chart._metasets[0])
-
             ctx.beginPath();
             ctx.strokeStyle = "#ff0000";
             ctx.lineWidth = 5
@@ -68,6 +66,8 @@ export default {
 
             ctx.beginPath();
             ctx.strokeStyle = "#ff0000";
+            ctx.lineWidth = 5
+            ctx.setLineDash([5, 3]);
             ctx.moveTo(x2 - w2 / 2, y1 - ctx.lineWidth / 2);
             ctx.lineTo(x1 - w2 / 2, y1 - ctx.lineWidth / 2);
             ctx.stroke();
